@@ -6,8 +6,11 @@ var TopsPage = require(pageObjectDir + "/topsPage.js");
 var topsPage = new TopsPage();
 var FadedTshirtsPage = require(pageObjectDir + "/fadedTshirtsPage.js");
 var fadedTshirtsPage = new FadedTshirtsPage();
+var CartPage = require(pageObjectDir + "/cartPage.js");
+var cartPage = new CartPage();
 
 describe('Protractor Demo App', function () {
+    var product;
     it('should have a title Women', function () {
 
         browser.get(homePage.URL);
@@ -17,54 +20,67 @@ describe('Protractor Demo App', function () {
     });
 
     it('should have a title Tops', function () {
-        
-                womenPage.topsLabelOnWomenPage.click();
-        
-                expect(topsPage.topsLabel.getText()).toEqual('TOPS');
-            });
- 
-            
+
+        womenPage.topsLabelOnWomenPage.click();
+
+        expect(topsPage.topsLabel.getText()).toEqual('TOPS');
+    });
+
     it('should have a length 8', function () {
-            topsPage.fadedShortSleeveTshirtsLabel.click();
-            var isLabelLongerThan = function(isLongerThan){
-            return new Promise(function(resolve){
-            fadedTshirtsPage.titleLabel.getText().then(function(text){
-            expect(text.length).toBeGreaterThan(isLongerThan);
-            })
-            }); 
-            }
-            isLabelLongerThan(8).then( console.log) 
-            }); 
+
+        topsPage.fadedShortSleeveTshirtsLabel.click();
+
+        fadedTshirtsPage.isDescriptionLongerThan(8).then(function (IsDescription) {
+            expect(IsDescription).toBeTruthy();
+        });
+    });
 
     it('should have a description "new"', function () {
-                
-            expect(fadedTshirtsPage.newLabel.getText()).toEqual('New');
-            });        
+
+        expect(fadedTshirtsPage.newLabel.getText()).toEqual('New');
+    });
 
     it('should choose size M', function () {
-                
-            fadedTshirtsPage.selectSizeSelector.click();
-            fadedTshirtsPage.selectSizeM.click();
-            expect(fadedTshirtsPage.selectedSize.getText()).toEqual('M');
+
+        fadedTshirtsPage.selectSizeSelector.click();
+        fadedTshirtsPage.selectSizeM.click();
+        expect(fadedTshirtsPage.selectedSize.getText()).toEqual('M');
+
+        
+    });
+
+    // it('Click cart label 2 times', function () {
+    //     fadedTshirtsPage.cartLabel.click();
+    //     fadedTshirtsPage.cartLabel.click();
+    //     })
+        
+    it('Check product and price', function () {
+        fadedTshirtsPage.titleLabel.getText().then(function (text) {
+           product = text;
+            expect(text).toBeTruthy();
+            console.log(text);
             fadedTshirtsPage.addToCart.click();
-            expect(fadedTshirtsPage.addedToCartPage.getText()).toEqual('Faded Short Sleeve T-shirts');
-            });
+            fadedTshirtsPage.cartLabel.click();
+            fadedTshirtsPage.cartLabel.click();
+            expect(product).toContain('Faded Short Sleeve T-shirts');
+            expect(cartPage.productDescriptionLabel.getText()).toContain(product);
+        });
 
+        // fadedTshirtsPage.addToCart.click();
+        // fadedTshirtsPage.cartLabel.click();
+        // fadedTshirtsPage.cartLabel.click();
+        // expect(product).toContain('Faded Short Sleeve T-shirts');
+        // expect(cartPage.productDescriptionLabel.getText()).toContain(product);
+        //expect(product).toContain(cartPage.productDescriptionLabel)
+        // price = fadedTshirtsPage.priceLabel.getText();
 
-
-            
-
-//     it('should see customer service label', function () {
-
-//         // browser.waitForAngularEnabled(false);
-
-//         expect(contactUsPage.customerServiceLabel.isDisplayed()).toBeTruthy();
-//     });
-
-//     it('should submit button be displayed', function () {
-
-//         // browser.waitForAngularEnabled(false);
-
-//         expect(contactUsPage.submitButton.isDisplayed()).toBeTruthy();
-//     });
+        // fadedTshirtsPage.addToCart.click();
+        // fadedTshirtsPage.cartLabel.click();
+        // fadedTshirtsPage.cartLabel.click();
+        // expect(product).toContain(cartPage.productDescriptionLabel.getText());
+        // expect(price).toContain(cartPage.priceLabel.getText());
+        
+        })
+        
 });
+
