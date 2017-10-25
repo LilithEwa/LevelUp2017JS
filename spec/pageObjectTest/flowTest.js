@@ -6,7 +6,6 @@ var contactUsPage = new ContactUsPage();
 describe('Protractor Demo App', function () {
     it('should have a title', function () {
 
-        // browser.waitForAngularEnabled(false);
         browser.get(homePage.URL);
         homePage.contactUsLink.click();
 
@@ -17,13 +16,13 @@ describe('Protractor Demo App', function () {
 
         // browser.waitForAngularEnabled(false);
 
-        expect(contactUsPage.customerServiceLabel.isDisplayed());
+        expect(contactUsPage.customerServiceLabel.isDisplayed()).toBeTruthy();
     });
 
     it('should submit button be displayed', function () {
 
         // browser.waitForAngularEnabled(false);
 
-        expect(contactUsPage.submitButton.isDisplayed());
+        expect(contactUsPage.submitButton.isDisplayed()).toBeTruthy();
     });
 });

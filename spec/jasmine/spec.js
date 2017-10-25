@@ -1,17 +1,10 @@
 beforeAll(function(){//'kod ktory wykona sie przed wszytskim'
-
 });
-
 beforeEach(function(){//'kod ktory wykona sie przed kazdym testem'
-
 });
-
 afterAll(function(){//'kod ktory wykona sie po wszytskim'
-
 });
-
 afterEach(function(){//'kod ktory wykona sie po kazdym testem'
-
 });
 
 describe('Protractor Demo App', function() {

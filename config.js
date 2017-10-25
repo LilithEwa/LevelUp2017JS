@@ -15,7 +15,7 @@ frameworks: ['jasmine'],
 // They may include glob patterns.
 suites: {
     jasmine: 'spec/jasmine/*.js',
-    pageObject: 'spec/pageObjectTest/*.js'
+    pageObject: 'spec/pageObjectTest/zad2Test.js'
 },
 // Options to be passed to Jasmine-node.
 jasmineNodeOpts: {
@@ -23,7 +23,7 @@ showColors: true, // Use colors in the command line report.
 },
 onPrepare:function(){
     global.using = using;
-    global.ignoreSynchronization = true;
+    browser.ignoreSynchronization = true;//not angular
     global.pageObjectDir = __dirname+"/pageObject";
 },
 };
