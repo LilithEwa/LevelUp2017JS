@@ -40,18 +40,17 @@ describe('Protractor Demo App', function () {
     using(data, function (dress) {
 
         it('should have a title Dresses', function () {
-
             browser.get(dressesPage.URL);
             expect(dressesPage.getTitleDresses()).toEqual('Dresses - My Store');
         })
 
         it('should have a product name', function () {
             dressesPage[dress.selectorDress].click();
-            expect(productPage.productName.getText()).toEqual(dress.opis);
+            expect(productPage.getProductName()).toEqual(dress.opis);
         })
 
         it('should have a product price', function () {
-            expect(productPage.productPrice.getText()).toEqual(dress.cena);
+            expect(productPage.getProductPrice()).toEqual(dress.cena);
         })
     });
 });
