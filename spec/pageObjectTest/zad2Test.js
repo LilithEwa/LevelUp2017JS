@@ -1,86 +1,60 @@
 var HomePage = require(pageObjectDir + "/homePage.js");
 var homePage = new HomePage();
-var WomenPage = require(pageObjectDir + "/womenPage.js");
-var womenPage = new WomenPage();
-var TopsPage = require(pageObjectDir + "/topsPage.js");
-var topsPage = new TopsPage();
-var FadedTshirtsPage = require(pageObjectDir + "/fadedTshirtsPage.js");
-var fadedTshirtsPage = new FadedTshirtsPage();
-var CartPage = require(pageObjectDir + "/cartPage.js");
-var cartPage = new CartPage();
+var DressesPage = require(pageObjectDir + "/dressesPage.js");
+var dressesPage = new DressesPage();
+var ProductPage = require(pageObjectDir + "/productPage.js");
+var productPage = new ProductPage();
+
+var using = require("jasmine-data-provider");
+
+var data = {
+    "dress1": {
+        'selectorDress': "selectorDress1",
+        "cena": "$26.00",
+        "opis": "Printed Dress"
+    },
+    "dress2": {
+        'selectorDress': "selectorDress2",
+        "cena": "$50.99",
+        "opis": "Printed Dress"
+    },
+    "dress3": {
+        'selectorDress': "selectorDress3",
+        "cena": "$28.98",
+        "opis": "Printed Summer Dress"
+    },
+    "dress4": {
+        'selectorDress': "selectorDress4",
+        "cena": "$30.50",
+        "opis": "Printed Summer Dress"
+    },
+    "dress5": {
+        'selectorDress': "selectorDress5",
+        "cena": "$16.40",
+        "opis": "Printed Chiffon Dress"
+    },
+}
 
 describe('Protractor Demo App', function () {
-    var product;
-    it('should have a title Women', function () {
 
-        browser.get(homePage.URL);
-        homePage.womenLabelOnHomePage.click();
+    using(data, function (dress) {
 
-        expect(womenPage.womenLabel.getText()).toEqual('WOMEN');
-    });
+        it('should have a title Dresses', function () {
 
-    it('should have a title Tops', function () {
-
-        womenPage.topsLabelOnWomenPage.click();
-
-        expect(topsPage.topsLabel.getText()).toEqual('TOPS');
-    });
-
-    it('should have a length 8', function () {
-
-        topsPage.fadedShortSleeveTshirtsLabel.click();
-
-        fadedTshirtsPage.isDescriptionLongerThan(8).then(function (IsDescription) {
-            expect(IsDescription).toBeTruthy();
-        });
-    });
-
-    it('should have a description "new"', function () {
-
-        expect(fadedTshirtsPage.newLabel.getText()).toEqual('New');
-    });
-
-    it('should choose size M', function () {
-
-        fadedTshirtsPage.selectSizeSelector.click();
-        fadedTshirtsPage.selectSizeM.click();
-        expect(fadedTshirtsPage.selectedSize.getText()).toEqual('M');
-
-        
-    });
-
-    // it('Click cart label 2 times', function () {
-    //     fadedTshirtsPage.cartLabel.click();
-    //     fadedTshirtsPage.cartLabel.click();
-    //     })
-        
-    it('Check product and price', function () {
-        fadedTshirtsPage.titleLabel.getText().then(function (text) {
-           product = text;
-            expect(text).toBeTruthy();
-            console.log(text);
-            fadedTshirtsPage.addToCart.click();
-            fadedTshirtsPage.cartLabel.click();
-            fadedTshirtsPage.cartLabel.click();
-            expect(product).toContain('Faded Short Sleeve T-shirts');
-            expect(cartPage.productDescriptionLabel.getText()).toContain(product);
-        });
-
-        // fadedTshirtsPage.addToCart.click();
-        // fadedTshirtsPage.cartLabel.click();
-        // fadedTshirtsPage.cartLabel.click();
-        // expect(product).toContain('Faded Short Sleeve T-shirts');
-        // expect(cartPage.productDescriptionLabel.getText()).toContain(product);
-        //expect(product).toContain(cartPage.productDescriptionLabel)
-        // price = fadedTshirtsPage.priceLabel.getText();
-
-        // fadedTshirtsPage.addToCart.click();
-        // fadedTshirtsPage.cartLabel.click();
-        // fadedTshirtsPage.cartLabel.click();
-        // expect(product).toContain(cartPage.productDescriptionLabel.getText());
-        // expect(price).toContain(cartPage.priceLabel.getText());
-        
+            browser.get(dressesPage.URL);
+            expect(dressesPage.getTitleDresses()).toEqual('Dresses - My Store');
         })
-        
+
+        it('should have a product name', function () {
+            dressesPage[dress.selectorDress].click();
+            expect(productPage.productName.getText()).toEqual(dress.opis);
+        })
+
+        it('should have a product price', function () {
+            expect(productPage.productPrice.getText()).toEqual(dress.cena);
+        })
+    });
 });
+
+
 
