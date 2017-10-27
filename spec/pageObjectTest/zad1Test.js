@@ -45,20 +45,20 @@ describe('Protractor Demo App', function () {
         fadedTshirtsPage.getDescriptionFromProduct().then(function (text) {
            product = text;
             expect(text).toBeTruthy();
-            fadedTshirtsPage.addToCart.click();
-            fadedTshirtsPage.cartLabel.click();
-            fadedTshirtsPage.cartLabel.click();
-            expect(cartPage.productDescriptionLabel.getText()).toContain(product);
+            fadedTshirtsPage.addToCart();
+            fadedTshirtsPage.clickOnCart();
+            fadedTshirtsPage.clickOnCart();
+            expect(cartPage.getDescriptionFromProduct()).toContain(product);
         });
 
     it('Check price', function () {
-            fadedTshirtsPage.priceLabel.getText().then(function (text) {
+            fadedTshirtsPage.getPrice().then(function (text) {
                product = text;
                 expect(text).toBeTruthy();
-                fadedTshirtsPage.addToCart.click();
-                fadedTshirtsPage.cartLabel.click();
-                fadedTshirtsPage.cartLabel.click();
-                expect(cartPage.priceLabel.getText()).toContain(product);
+                fadedTshirtsPage.addToCart();
+                fadedTshirtsPage.clickOnCart();
+                fadedTshirtsPage.clickOnCart();
+                expect(cartPage.getPrice()).toContain(product);
             });
         });
     });

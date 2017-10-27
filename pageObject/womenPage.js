@@ -4,14 +4,14 @@ var WomenPage = function WomenPage() {
     this.topsLabelOnWomenPage = element(By.css('#categories_block_left > div > ul > li:nth-child(1) > a'));
 }
 
-    WomenPage.prototype.clickTopslabel = function () {
-        var that = this;
-        return that.topsLabelOnWomenPage.click();
-    }
+WomenPage.prototype.clickTopslabel = function () {
+    var that = this;
+    return that.topsLabelOnWomenPage.click();
+}
 
-    WomenPage.prototype.getTextWomenLabel = function () {
-        var that = this;
-        return that.womenLabel.getText();
-    }
+WomenPage.prototype.getTextWomenLabel = function () {
+    var that = this;
+    return that.womenLabel.getText();
+}
 
 module.exports = WomenPage;

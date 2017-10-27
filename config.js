@@ -15,7 +15,7 @@ frameworks: ['jasmine'],
 // They may include glob patterns.
 suites: {
     jasmine: 'spec/jasmine/*.js',
-    pageObject: 'spec/pageObjectTest/zad1Test.js'
+    pageObject: 'spec/pageObjectTest/zad2Test.js'
 },
 // Options to be passed to Jasmine-node.
 jasmineNodeOpts: {

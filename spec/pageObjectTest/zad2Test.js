@@ -4,8 +4,7 @@ var DressesPage = require(pageObjectDir + "/dressesPage.js");
 var dressesPage = new DressesPage();
 var ProductPage = require(pageObjectDir + "/productPage.js");
 var productPage = new ProductPage();
-
-
+var data = require(testDataDir + "/data.js");
 
 describe('Protractor Demo App', function () {
 

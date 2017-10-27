@@ -13,5 +13,4 @@ TopsPage.prototype.clickOnFadedShortSleevesLabel = function () {
     return that.fadedShortSleeveTshirtsLabel.click();
 }
 
-
 module.exports = TopsPage;
