@@ -15,7 +15,7 @@ frameworks: ['jasmine'],
 // They may include glob patterns.
 suites: {
     jasmine: 'spec/jasmine/*.js',
-    pageObject: 'spec/pageObjectTest/zad2Test.js'
+    pageObject: 'spec/pageObjectTest/zad1Test.js'
 },
 // Options to be passed to Jasmine-node.
 jasmineNodeOpts: {
@@ -25,5 +25,6 @@ onPrepare:function(){
     global.using = using;
     browser.ignoreSynchronization = true;//not angular
     global.pageObjectDir = __dirname+"/pageObject";
+    global.testDataDir = __dirname+"/testData";
 },
 };

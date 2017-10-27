@@ -1,8 +1,8 @@
 var FadedTshirtsPage = function FadedTshirtsPage() {
-    this.titleLabel = element(By.css('#center_column > div > div > div.pb-center-column.col-xs-12.col-sm-4 > h1'));
+    this.descriptionLabel = element(By.css('#center_column > div > div > div.pb-center-column.col-xs-12.col-sm-4 > h1'));
     this.newLabel = element(By.css('#product_condition > span'));
     this.selectSizeSelector = element(By.css('#group_1'));
-    this.selectSizeM = element(By.css('#group_1 > option:nth-child(2)'));
+    this.selectSizeMSelector = element(By.css('#group_1 > option:nth-child(2)'));
     this.selectedSize = element(By.css('#uniform-group_1 > span'));
     this.addToCart = element(By.css('#add_to_cart > button > span'));
     this.addedToCartPage = element(By.css('img[title="Faded Short Sleeve T-shirts"]'));
@@ -17,8 +17,28 @@ var FadedTshirtsPage = function FadedTshirtsPage() {
             })
         })
     }
+    FadedTshirtsPage.prototype.getTextFromNewLabel = function () {
+        var that = this;
+        return that.newLabel.getText();
+    }
 
+    FadedTshirtsPage.prototype.selectSizeButton = function () {
+        var that = this;
+        return that.selectSizeSelector.click();
+}
+    
+FadedTshirtsPage.prototype.selectSizeM = function () {
+    var that = this;
+    return that.selectSizeMSelector.click();
+}
 
-
+    FadedTshirtsPage.prototype.getSize = function () {
+        var that = this;
+        return that.selectedSize.getText();
+}
+FadedTshirtsPage.prototype.getDescriptionFromProduct = function () {
+    var that = this;
+    return that.descriptionLabel.getText();
+}
 }
 module.exports = FadedTshirtsPage;
